@@ -17,9 +17,9 @@ const Search = ({handleUpdateShelf, books}) => {
                         if (searchBooks.error) {
                             setSearchBooks([])
                         } else {
-                            booksWithShelf = books && Object.values(books).filter(o1 => searchBooks.some(o2 => o1.id === o2.id));
-                            booksWithoutShelf = booksWithShelf && searchBooks.filter(o1 => !booksWithShelf.some(o2 => o1.id === o2.id));
-                            filteredBooks = booksWithoutShelf && [...booksWithShelf, ...booksWithoutShelf]
+                            booksWithShelf =  Object.values(books).filter(o1 => searchBooks.some(o2 => o1.id === o2.id));
+                            booksWithoutShelf =  searchBooks.filter(o1 => !booksWithShelf.some(o2 => o1.id === o2.id));
+                            filteredBooks =  [...booksWithShelf, ...booksWithoutShelf]
                             setSearchBooks(filteredBooks)
                             console.log(filteredBooks)
                             console.log(searchBooks)
