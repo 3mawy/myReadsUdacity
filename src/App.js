@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from './components/Home'
 import Search from './components/Search'
 import * as BooksAPI from "./BooksAPI";
-import {update} from "./BooksAPI";
 
 const BooksApp = () => {
 
@@ -17,11 +16,10 @@ const BooksApp = () => {
         BooksAPI.update(newData, shelf).then(response => {
             newData.shelf = shelf
             setBooks((prevState => {
-                prevState.filter(book => book.id !== newData.id).concat(newData)
-                console.log(newData + "state changed")
+                console.log(books)
+                return prevState.filter(book => book.id !== newData.id).concat(newData)
 
             }))
-            getBooks()
         })
 
     }
