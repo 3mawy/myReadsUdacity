@@ -8,9 +8,12 @@ import * as BooksAPI from "./BooksAPI";
 const BooksApp = () => {
 
     const [books, setBooks] = useState({});
+
     useEffect(() => {
-        getBooks()
+        BooksAPI.getAll()
+            .then((books) => setBooks(books))
     }, [])
+
     const handleUpdateShelf = (newData, shelf) => {
         console.log(newData + "zzzzzz")
         BooksAPI.update(newData, shelf).then(response => {
@@ -18,14 +21,8 @@ const BooksApp = () => {
             setBooks((prevState => {
                 console.log(books)
                 return prevState.filter(book => book.id !== newData.id).concat(newData)
-
             }))
         })
-
-    }
-    const getBooks = () => {
-        BooksAPI.getAll()
-            .then((books) => setBooks(books))
     }
 
     return (

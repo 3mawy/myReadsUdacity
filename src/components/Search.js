@@ -27,6 +27,7 @@ const Search = ({handleUpdateShelf, books}) => {
                     }
                 )
         }
+        else setSearchBooks([])
     }, [query, books])
 
     return (
