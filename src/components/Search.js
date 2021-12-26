@@ -53,7 +53,7 @@ const Search = ({handleUpdateShelf, books}) => {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {searchBooks && Object.entries(searchBooks).map(([key, value]) => (
-                        <Book key={key} data={value} updateShelf={handleUpdateShelf}/>))}
+                        <Book key={value.id} data={value} updateShelf={handleUpdateShelf}/>))}
                 </ol>
             </div>
         </div>
