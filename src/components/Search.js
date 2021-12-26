@@ -6,7 +6,7 @@ import Book from "./Book";
 const Search = ({handleUpdateShelf, books}) => {
     const [searchBooks, setSearchBooks] = useState([]);
     const [query, setQuery] = useState('');
-    let booksWithShelf, booksWithoutShelf, filteredBooks
+    let  booksWithoutShelf, booksWithShelf, filteredBooks
     //let result = searchBooks.filter(o1 => books.some(o2 => o1.id === o2.id));
 
     useEffect(() => {

@@ -30,7 +30,7 @@ const Book = ({data, updateShelf}) => {
                     </div>
                 </div>
                 <div className="book-title">{title}</div>
-                <div className="book-authors">{authors}</div>
+                <div className="book-authors">{authors && authors.join(', ')}</div>
             </div>
         </li>
     )
