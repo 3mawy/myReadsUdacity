@@ -6,8 +6,7 @@ import Book from "./Book";
 const Search = ({handleUpdateShelf, books}) => {
     const [searchBooks, setSearchBooks] = useState([]);
     const [query, setQuery] = useState('');
-    let  booksWithoutShelf, booksWithShelf, filteredBooks
-    //let result = searchBooks.filter(o1 => books.some(o2 => o1.id === o2.id));
+    let booksWithoutShelf, booksWithShelf, filteredBooks
 
     useEffect(() => {
         if (query) {
@@ -17,17 +16,16 @@ const Search = ({handleUpdateShelf, books}) => {
                         if (searchBooks.error) {
                             setSearchBooks([])
                         } else {
-                            booksWithShelf =  Object.values(books).filter(o1 => searchBooks.some(o2 => o1.id === o2.id));
-                            booksWithoutShelf =  searchBooks.filter(o1 => !booksWithShelf.some(o2 => o1.id === o2.id));
-                            filteredBooks =  [...booksWithShelf, ...booksWithoutShelf]
+                            booksWithShelf = Object.values(books).filter(o1 => searchBooks.some(o2 => o1.id === o2.id));
+                            booksWithoutShelf = searchBooks.filter(o1 => !booksWithShelf.some(o2 => o1.id === o2.id));
+                            filteredBooks = [...booksWithShelf, ...booksWithoutShelf]
                             setSearchBooks(filteredBooks)
                             console.log(filteredBooks)
                             console.log(searchBooks)
                         }
                     }
                 )
-        }
-        else setSearchBooks([])
+        } else setSearchBooks([])
     }, [query, books])
 
     return (
@@ -45,15 +43,15 @@ const Search = ({handleUpdateShelf, books}) => {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                    <input value={query} onChange={e => setQuery(e.target.value.trim())} type="text"
+                    <input value={query} onChange={e => setQuery(e.target.value)} type="text"
                            placeholder="Search by title or author"/>
 
                 </div>
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {searchBooks && Object.entries(searchBooks).map(([key, value]) => (
-                        <Book key={value.id} data={value} updateShelf={handleUpdateShelf}/>))}
+                    {searchBooks && searchBooks.map((book) => (
+                        <Book key={book.id} data={book} updateShelf={handleUpdateShelf}/>))}
                 </ol>
             </div>
         </div>
